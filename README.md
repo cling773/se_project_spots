@@ -1,5 +1,7 @@
 # Project 3: Spots Image Sharing
 
+https://cling773.github.io/se_project_spots/
+
 ## Description
 
 This site provides a way for individuals to create a profile and share their images with others. People visiting the site have the ability to like that persons images they have shared.
