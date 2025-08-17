@@ -37,11 +37,17 @@ editProfileBtn.addEventListener("click", function () {
   openModal(editProfileModal);
 });
 
-editProfileCloseBtn.addEventListener("click", closeModal(editProfileModal));
+editProfileCloseBtn.addEventListener("click", function () {
+  editProfileModal.classList.remove("modal_is-opened");
+});
 
-newPostBtn.addEventListener("click", openModal(newPostModal));
+newPostBtn.addEventListener("click", function () {
+  newPostModal.classList.toggle("modal_is-opened");
+});
 
-newPostCloseBtn.addEventListener("click", closeModal(newPostModal));
+newPostCloseBtn.addEventListener("click", function () {
+  newPostModal.classList.remove("modal_is-opened");
+});
 
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
