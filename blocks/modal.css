@@ -73,9 +73,11 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
+  box-sizing: border-box;
 }
 
 .modal__submit-btn {
+  border: none;
   background-color: #212121;
   color: #fcf5e5;
   gap: 8px;
@@ -109,8 +111,20 @@
 }
 
 @media screen and (max-width: 627px) {
+  .modal__container {
+    padding: 12px;
+    position: relative;
+  }
+
   .modal__title {
     font-size: 20px;
+    margin-top: 6px;
+  }
+
+  .modal__close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
   }
   .modal__submit-btn {
     max-width: none;
