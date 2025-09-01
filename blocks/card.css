@@ -1,5 +1,6 @@
 .card {
   max-width: 413px;
+  position: relative;
 }
 
 .card__image {
@@ -31,7 +32,7 @@
   background-image: url(../images/Like-Icon.svg);
   background-size: 23px 20px;
   background-repeat: no-repeat;
-  background-position: 0%;
+  background-position: center;
   border: none;
   background-color: transparent;
   opacity: 0.4;
@@ -44,6 +45,41 @@
   cursor: pointer;
 }
 
+.card__like-btn_active {
+  opacity: 1;
+  background-image: url(../images/liked_active.png);
+}
+
+.card__like-btn_active:hover {
+  background-image: url(../images/liked_active_hover.png);
+}
+
+.card__delete-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  background-image: url(../images/delete.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+.card__delete-btn:hover {
+  background-image: url(../images/delete_hover.png);
+}
+.card__delete-btn:active {
+  transform: scale(0.96);
+}
+.card__delete-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
@@ -52,5 +88,14 @@
     max-width: 235px;
     font-size: 16px;
     line-height: 1;
+  }
+  .card__like-btn {
+    width: 28px;
+    height: 24px;
+    background-size: 28px 24px;
+  }
+  .card__delete-btn {
+    width: 28px;
+    height: 28px;
   }
 }
