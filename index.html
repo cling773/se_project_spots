@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="Spots" content="???" />
+    <meta name="Spots" content="photo-sharing" />
     <meta name="author" content="cling773" />
     <meta name="keywords" content="image sharing, social media" />
 
@@ -85,6 +85,9 @@
                 type="text"
                 class="modal__input"
                 placeholder="Type your name"
+                name="profileName"
+                required
+                autocomplete="name"
               />
             </label>
             <label for="profile-description-input" class="modal__label"
@@ -94,6 +97,8 @@
                 type="text"
                 class="modal__input"
                 placeholder="Describe yourself"
+                name="profileDescription"
+                required
               />
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
@@ -116,6 +121,9 @@
                 type="url"
                 class="modal__input"
                 placeholder="Paste a link to the picture"
+                name="imageUrl"
+                required
+                inputmode="url"
               />
             </label>
             <label for="card-caption-input" class="modal__label"
@@ -125,6 +133,8 @@
                 type="text"
                 class="modal__input"
                 placeholder="Type your caption"
+                name="caption"
+                required
               />
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
