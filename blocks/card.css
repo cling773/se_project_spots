@@ -59,8 +59,8 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border: none;
   background: transparent;
   background-image: url(../images/delete.png);
@@ -93,7 +93,7 @@
   .card__like-btn {
     width: 28px;
     height: 24px;
-    background-size: 28px 24px;
+    background-size: 20px 18px;
   }
   .card__delete-btn {
     width: 28px;
