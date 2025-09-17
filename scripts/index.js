@@ -54,18 +54,42 @@ const previewImg = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
 const previewCloseBtn = previewModal.querySelector(".modal__close-btn");
 
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const opened = document.querySelector(".modal_is-opened");
+    if (opened) closeModal(opened);
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  document.addEventListener("keydown", handleEscClose); // add on open
 }
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener("keydown", handleEscClose); // remove on close
 }
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  modal.addEventListener("mousedown", (e) => {
+    if (e.target === e.currentTarget) closeModal(modal);
+  });
+});
 
 editProfileBtn.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionL.textContent;
+
+  if (window.formValidation?.resetValidationState) {
+    window.formValidation.resetValidationState(
+      editProfileForm,
+      window.formValidation.settings
+    );
+  }
+
   openModal(editProfileModal);
 });
+
 editProfileCloseBtn.addEventListener("click", () =>
   closeModal(editProfileModal)
 );
@@ -93,9 +117,18 @@ function handleNewPostSubmit(evt) {
   const card = getCardElement(data);
   cardsContainer.prepend(card);
 
-  newPostForm.reset();
+  if (window.formValidation?.resetFormAfterSubmit) {
+    window.formValidation.resetFormAfterSubmit(
+      newPostForm,
+      window.formValidation.settings
+    );
+  } else {
+    newPostForm.reset();
+  }
+
   closeModal(newPostModal);
 }
+
 newPostForm.addEventListener("submit", handleNewPostSubmit);
 
 function getCardElement(data) {
@@ -112,13 +145,17 @@ function getCardElement(data) {
   img.src = data.link;
   img.alt = data.name;
 
-  likeBtn.addEventListener("click", () => {
-    likeBtn.classList.toggle("card__like-btn_active");
-  });
+  if (likeBtn) {
+    likeBtn.addEventListener("click", () => {
+      likeBtn.classList.toggle("card__like-btn_active");
+    });
+  }
 
-  deleteBtn.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", () => {
+      cardElement.remove();
+    });
+  }
 
   img.addEventListener("click", () => {
     previewCaption.textContent = data.name;
