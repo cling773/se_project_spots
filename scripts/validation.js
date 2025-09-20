@@ -8,9 +8,7 @@ const validationSettings = {
 };
 
 function showInputError(formElement, inputElement, config) {
-  const errorElement =
-    formElement.querySelector(`#${inputElement.id}-error`) ||
-    formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   if (!errorElement) return;
 
   inputElement.classList.add(config.inputErrorClass);
@@ -19,9 +17,7 @@ function showInputError(formElement, inputElement, config) {
 }
 
 function hideInputError(formElement, inputElement, config) {
-  const errorElement =
-    formElement.querySelector(`#${inputElement.id}-error`) ||
-    formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   if (!errorElement) return;
 
   inputElement.classList.remove(config.inputErrorClass);
@@ -88,11 +84,5 @@ function resetFormAfterSubmit(formElement, config = validationSettings) {
   formElement.reset();
   resetValidationState(formElement, config);
 }
-
-window.formValidation = {
-  resetValidationState,
-  resetFormAfterSubmit,
-  settings: validationSettings,
-};
 
 enableValidation(validationSettings);

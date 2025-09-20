@@ -54,7 +54,7 @@ const previewImg = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
 const previewCloseBtn = previewModal.querySelector(".modal__close-btn");
 
-function closeOnEscape(evt) {
+function handleEscapeKeyPress(evt) {
   if (evt.key === "Escape") {
     const opened = document.querySelector(".modal_is-opened");
     if (opened) closeModal(opened);
@@ -63,11 +63,11 @@ function closeOnEscape(evt) {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
-  document.addEventListener("keydown", closeOnEscape); // add on open
+  document.addEventListener("keydown", handleEscapeKeyPress); // add on open
 }
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
-  document.removeEventListener("keydown", closeOnEscape); // remove on close
+  document.removeEventListener("keydown", handleEscapeKeyPress); // remove on close
 }
 
 document.querySelectorAll(".modal").forEach((modal) => {
@@ -80,13 +80,7 @@ editProfileBtn.addEventListener("click", () => {
   editProfileNameInput.value = profileNameEl.textContent;
   editProfileDescriptionInput.value = profileDescriptionEl.textContent;
 
-  if (window.formValidation?.resetValidationState) {
-    window.formValidation.resetValidationState(
-      editProfileForm,
-      window.formValidation.settings
-    );
-  }
-
+  resetValidationState(editProfileForm, validationSettings);
   openModal(editProfileModal);
 });
 
@@ -117,11 +111,8 @@ function handleNewPostSubmit(evt) {
   const card = getCardElement(data);
   cardsContainer.prepend(card);
 
-  if (window.formValidation?.resetFormAfterSubmit) {
-    window.formValidation.resetFormAfterSubmit(
-      newPostForm,
-      window.formValidation.settings
-    );
+  if (typeof resetFormAfterSubmit === "function") {
+    resetFormAfterSubmit(newPostForm, validationSettings);
   } else {
     newPostForm.reset();
   }
